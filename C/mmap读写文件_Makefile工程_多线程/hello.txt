@@ -1,0 +1,23 @@
+ruguowoshiyiweiddskaaaasfle <sys/mman.h> //mmap函数的必要头文件
+#include <sys/stat.h> // struct stat 需要的头文件
+#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+
+#define MAX_LEN 128
+
+//  mmap映射的3个主要函数
+//  void mmap(void *addr, size_t len, int prot,int flags, int fildes, off_t off)
+//  int msync(void *addr, size_t len, int flags);
+//  int munmap(void *addr, size_t len);
+
+/**
+ * @brief mmap方式写文本
+ * @param path mmap 打开文件的路径
+ * @param text 要输入的文本
+ */
+int my_mmap_write(const char *path, const char *text)
+{
+    //打开文件
+    int fd;
+    if( (fd = open(path, O_RDWR)) < 0
